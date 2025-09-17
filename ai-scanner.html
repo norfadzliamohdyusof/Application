@@ -46,8 +46,8 @@
     <div class="main-content">
         <div class="upload-container">
             <h1 class="upload-title">Upload Image</h1>
-            <p class="upload-subtitle">Select your image file</p>
-            <div class="upload-hint">SUpport JPG. PNG. HEIC</div>
+            <p class="upload-subtitle">Select your image file here</p>
+            <div class="upload-hint">Supports JPG. PNG. HEIC</div>
 
             <button class="browse-btn" onclick="document.getElementById('fileInput').click()">
                 Browse Files
@@ -103,7 +103,7 @@
             uploadTitle.textContent = "Please wait...";
             uploadSubTitle.textContent = "Wait a while we are processing your image";
             uploadHint.style.display = 'none';
-            browseBtn.scroll.display = 'none';
+            browseBtn.style.display = 'none';
 
             //Check if file is HEIC/HEIF
             if (file.type === "image/heic" || file.name.toLowerCase().endsWith(".heic") || file.type === "image/heif") {
@@ -174,7 +174,7 @@
     //Server configurations
 
     //API Configuration
-    const API_ENDPOINT = " https://f06a8fae4659.ngrok-free.app/predict";
+    const API_ENDPOINT = "https://f06a8fae4659.ngrok-free.app/predict";
 
      //Main prediction function
     function predict(file) {
@@ -287,7 +287,7 @@
         const subtitleElement = document.getElementById("uploadSubtitle") || document.querySelector(".upload-subtitle");
         const buttonElement = document.getElementById("predictBtn") || document.querySelector(".predict-btn");
 
-        if (titleElement) titleElement.textContent - title;
+        if (titleElement) titleElement.textContent = title;
         if (subtitleElement) subtitleElement.textContent = subtitle;
         if (buttonElement) buttonElement.style.display = showButton ? "inline" : "none";
     }
