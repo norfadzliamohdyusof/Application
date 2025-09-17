@@ -17,39 +17,37 @@ body {
 
 .container {
     text-align: center;
-    max-width: 600px;
     width: 100%;
     position: absolute;
     padding: 20px 20px;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%);
 }
 
 .subtitle {
+
     align-items: center;
     justify-content: center;
     color: #666;
     font-size: 18px;
-    margin-top: 40px;
+    margin-bottom: 30px;
     line-height: 1.4;
 }
 
 .container h1 {
+
     align-items: center;
     justify-content: center;
     color: #9ACD32;
     font-size: 24px;
     font-weight: 600;
-    /* margin-bottom: 20px; */
 }
 
 .container img {
     width: 20%;
     margin-bottom: 20px;
 }
-
-/* -----------------------------------Add new style for PWA in index.html----------------------------------- */
 
 .install-section {
     display: flex;
@@ -81,8 +79,10 @@ body {
     font-weight: 300;
 }
 
-/* -----------------------------------Start of styling for template.html----------------------------------- */
+/* -----------------------------------End of styling for index.html------------------------------------ */
 
+/* -----------------------------------Start of styling for Template----------------------------------- */
+/* Header */
 .header {
     position: fixed;
     top: 0;
@@ -91,7 +91,7 @@ body {
     height: 60px;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 02);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     display: flex;
     align-items: center;
     padding: 0 10px;
@@ -125,6 +125,7 @@ body {
     color: #333;
 }
 
+/* Sidebar */
 .sidebar {
     position: fixed;
     top: 0;
@@ -176,7 +177,7 @@ body {
 .nav-item:hover,
 .nav-item.active {
     background: rgba(102, 126, 234, 0.1);
-    border-left-color: #667eee;
+    border-left-color: #667eea;
 }
 
 .nav-item i {
@@ -185,6 +186,7 @@ body {
     font-size: 18px;
 }
 
+/* Overlay */
 .overlay {
     position: fixed;
     top: 0;
@@ -203,6 +205,7 @@ body {
     visibility: visible;
 }
 
+/* Footer */
 .footer-tab-bar {
     position: fixed;
     bottom: 0;
@@ -226,7 +229,9 @@ body {
     font-weight: 600;
 }
 
-/* Styling for application.html */
+/* -----------------------------------End of styling for application.html----------------------------------- */
+
+/* -----------------------------------Start of styling for application.html----------------------------------- */
 .main-content {
     margin-top: 60px;
 }
@@ -239,16 +244,15 @@ body {
 
 .feature-card {
     background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur;
+    backdrop-filter: blur(10px);
     border-radius: 15px;
     padding: 25px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
 
 .feature-card:hover {
     transform: translateY(-5px);
-
 }
 
 .feature-icon {
@@ -260,7 +264,7 @@ body {
     margin-bottom: 15px;
 }
 
-.feature.title {
+.feature-title {
     font-size: 18px;
     font-weight: 600;
     color: #333;
@@ -288,8 +292,9 @@ body {
     width: 40%;
 }
 
-/*----------Styling for trash-menu.html--------------*/
+/* -----------------------------------End of styling for application.html----------------------------------- */
 
+/* -----------------------------------End of styling for trash-menu.html----------------------------------- */
 .menu-header {
     margin-bottom: 30px;
     padding-left: 10px;
@@ -306,7 +311,7 @@ body {
     font-size: 14px;
 }
 
-/*Menu Categories*/
+/* Menu Categories */
 .menu-categories {
     display: flex;
     flex-direction: column;
@@ -370,12 +375,13 @@ body {
     transition: transform 0.3s ease;
 }
 
-.category-button:active .arrow {
+.category-button.active .arrow {
     transform: rotate(90deg);
 }
 
-/* --------Styling for trash-guide.html----------- */
+/* -----------------------------------End of styling for trash-menu.html----------------------------------- */
 
+/* -----------------------------------Start of styling for trash-guide.html----------------------------------- */
 .items {
     padding: 20px 20px;
 }
@@ -438,7 +444,9 @@ body {
     font-weight: bold;
 }
 
-/* --------Styling for sorting-menu.html----------- */
+/* -----------------------------------End of styling for trash-guide.html----------------------------------- */
+
+/* -----------------------------------Start of styling for sorting-menu.html----------------------------------- */
 .bin-menu-icon {
     border-radius: 12px;
     display: flex;
@@ -455,7 +463,9 @@ body {
     border-radius: 15px;
 }
 
-/* --------Styling for sorting-guide.html----------- */
+/* -----------------------------------End of styling for sorting-menu.html----------------------------------- */
+
+/* -----------------------------------Start of styling for sorting-guide.html----------------------------------- */
 .bin-container {
     padding: 20px;
     text-align: center;
@@ -478,8 +488,9 @@ body {
     font-size: 18px;
 }
 
-/* -----------------------------------Start of styling for ai-scanner.html----------------------------------- */
+/* -----------------------------------End of styling for sorting-guide.html----------------------------------- */
 
+/* -----------------------------------Start of styling for ai-scanner.html----------------------------------- */
 .upload-container {
     background: white;
     border-radius: 20px;
@@ -516,7 +527,7 @@ body {
 .browse-btn {
     background: #7cb414;
     color: white;
-    border: non;
+    border: none;
     padding: 12px 24px;
     border-radius: 8px;
     font-size: 14px;
@@ -565,12 +576,12 @@ body {
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transofrm: translateY(10px);
+        transform: translateY(10px);
     }
 
     to {
         opacity: 1;
-        transofrm: translateY(0);
+        transform: translateY(0);
     }
 }
 
@@ -591,6 +602,59 @@ body {
     transition: all 0.3s ease;
     margin-top: 15px;
 }
+
+/* -----------------------------------End of styling for ai-scanner.html----------------------------------- */
+
+/* -----------------------------------Start of styling for loader in ai-scanner.html----------------------------------- */
+
+.load-wrapp {
+    display: inline;
+    width: 100px;
+    height: 100px;
+    margin: 20px 10px;
+    text-align: center;
+}
+
+.load-wrapp:last-child {
+    margin-right: 0;
+}
+
+.line {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    background-color: #7cb414;
+}
+
+.load .line:nth-last-child(1) {
+    animation: loading 0.6s 0.1s linear infinite;
+}
+
+.load .line:nth-last-child(2) {
+    animation: loading 0.6s 0.2s linear infinite;
+}
+
+.load .line:nth-last-child(3) {
+    animation: loading 0.6s 0.3s linear infinite;
+}
+
+
+@keyframes loading {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(0, 15px);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+/* -----------------------------------End of styling for loader in ai-scanner.html----------------------------------- */
 
 /* -----------------------------------Start of styling for result.html----------------------------------- */
 
@@ -718,3 +782,121 @@ body {
 }
 
 /* -----------------------------------End of styling for result.html----------------------------------- */
+
+/* -----------------------------------Start of styling for setting.html----------------------------------- */
+
+.setting-container h2 {
+    font-size: 24px;
+    color: #2d3748;
+    margin-bottom: 5px;
+}
+
+.segmented-picker {
+    align-items: center;
+    background-color: #f2f2f7;
+    border-radius: 8px;
+    display: flex;
+    overflow: hidden;
+    padding: 2px;
+    width: 300px;
+    position: relative;
+    margin: 20px auto;
+}
+
+.segmented-picker>input {
+    pointer-events: none;
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.segmented-picker>label {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    padding: 8px 16px;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.segmented-picker>label>span {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    position: relative;
+    z-index: 2;
+    transition: color 0.2s ease;
+    color: #666;
+}
+
+.segmented-picker>input:checked+label>span {
+    color: #333;
+}
+
+.segmented-picker>label:not(:first-of-type)::after {
+    background-color: rgba(0, 0, 0, 0.12);
+    content: "";
+    display: block;
+    height: 16px;
+    left: 0;
+    position: absolute;
+    width: 1px;
+    z-index: 1;
+    transition: opacity 0.2s ease;
+}
+
+.segmented-picker>input:checked+label::after,
+.segmented-picker>input:checked+label+input+label::after {
+    opacity: 0;
+}
+
+.segmented-picker::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: calc(50% - 2px);
+    height: calc(100% - 4px);
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease;
+    z-index: 1;
+}
+
+.segmented-picker>input:last-of-type:checked~ ::before,
+.segmented-picker>input#malay:checked~ ::before {
+    transform: translateX(100%);
+}
+
+.segmented-picker>input:nth-of-type(2):checked~.segmented-picker::before {
+    transform: translateX(100%);
+}
+
+.segmented-picker:has(input#malay:checked)::before {
+    transform: translateX(100%);
+}
+
+.demo-container {
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.demo-container h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.current-selection {
+    margin-top: 20px;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    color: #666;
+    font-size: 14px;
+}
+
+/* -----------------------------------End of styling for setting.html----------------------------------- */
