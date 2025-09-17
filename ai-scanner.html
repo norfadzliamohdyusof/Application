@@ -163,8 +163,8 @@
     }
 
     //Function to format file size
-    function formatFileSize(byte) {
-        if (byte === 0) return '0 Bytes';
+    function formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
         const k = 1024;
         const size = ['Bytes', 'KB', 'MB', 'GB'];
         const i = Math.floor(Math.log(bytes) / Math.log(k));
@@ -195,7 +195,7 @@
         })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Server error: ${response.status}');
+                    throw new Error(`Server error: ${response.status}`);
                 }
                 return response.json();
             })
@@ -291,8 +291,6 @@
         if (subtitleElement) subtitleElement.textContent = subtitle;
         if (buttonElement) buttonElement.style.display = showButton ? "inline" : "none";
     }
-
-
 
      //Loader functions
     function showLoader() {
