@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroSort</title> <!-- Title of the website -->
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>    
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+        <div class="logo">NeuroSort</div>
+        <img src="Images/logo.png" alt="NeuroSort Logo">
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="Images/logo.png" alt="NeuroSort Logo">
+            <div class="top-name">NeuroSort</div>
+        </div>
+        <nav class="nav-menu">
+            <a href="application.html" class="nav-item">
+                <i>🏠</i>
+                <span>Home</span>
+            </a>
+            <a href="https://wa.me/60123456789" class="nav-item">
+                <i>❓</i>
+                <span>Contact Us</span>
+            </a>
+            <a href="setting.html" class="nav-item">
+                <i>⚙️</i>
+                <span>Settings</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+    <div class="main-content">
+        <div class="bin-container">
+            <img src="" alt="Bin Images" class="bin-image">
+            <h1 id="bin-colors">Bin Colors</h1>
+            <p id="bin-description">Bin Description</p>
+        </div>
+    </div>
+
+    <!-- Footer Tab Bar -->
+    <div class="footer-tab-bar">
+        <span>Be Smart, Be Green, Be NeuroSort</span>
+    </div>
+</body>
+
+<!-- Javascript trash-guide.html -->
+<script>
+    const items = {
+        
+        blue: {
+            type: "Blue Bin",            
+            description: "The blue recycling bin is primarily used for paper materialas. Examples trash are newspapers and magazines, cardboard boxes, office paper, notebooks (without plastic covers) and paper bags.",
+            image: "Images/blue-bin.png"
+        },
+         orange: {
+            type: "Orange Bin",           
+            description: "For recyclable plastics and metal packaging. Examples trash are plastic bottles (water, soda, juice), food container (plastic or aluminium), aluminium drink cans, and metal tins (milkpowder, canned food).",
+            image: "Images/orange-bin.png"
+        },
+         brown: {
+            type: "Brown Bin",            
+            description: "Designed for glass bottles and containers. Examples trash are glass bottles, jam jars or sauce jars, perfume bottles and broken glass (carefully wrapped).",
+            image: "Images/brown-bin.png"
+        },
+         black: {
+            type: "Black Bin",            
+            description: "The black bin is designated for general waste that cannot be recycled or composted. Typical items include non-recyclable plastics, food-soiled packaging, and other residual waste that is usually sent to landfills or incineration facilities.",
+            image: "Images/black-bin.png"
+        }
+    }  
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const params = new URLSearchParams(window.location.search);
+        const type = params.get("type");        
+
+        if (type && items[type]) {
+            const item = items[type];
+            document.querySelector(".bin-image").src = item.image;
+            document.getElementById("bin-colors").textContent= item.color;
+            document.getElementById("bin-description").textContent = item.description;
+        }
+    });
+
+</script>
+
+</html>
