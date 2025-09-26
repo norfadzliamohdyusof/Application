@@ -75,13 +75,6 @@
 </body>
 
 <script>
-   // A simple function to toggle the sidebar
-function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('overlay');
-    sidebar.classList.toggle('active');
-    overlay.classList.toggle('active');
-}
 
 // Function to handle file selection and display information
 document.getElementById('fileInput').addEventListener('change', function(event) {
@@ -243,7 +236,7 @@ async function predict(file) {
         formData.append('image', file);
         
         // Add a text prompt for the Gemini model
-        const geminiPrompt = "Analyze this image. Identify the item and classify it into one of these categories: 'Recycle (Plastic/Paper/Metal)', 'Compost (Organic)', or 'Non-Recyclable (Trash)'. Also, provide a brief, friendly instruction on its proper disposal.";
+        const geminiPrompt = "Analyze this image. Identify the item and classify it into one of these categories: 'Recycle (Plastic)', 'Recycle (Paper)', 'Recycle (Metal)', 'Recycle (Glass)', 'Compost (Organic)', or 'Non-Recyclable (Trash)'. Also, provide a brief, friendly instruction on its proper disposal.";
         formData.append('prompt', geminiPrompt);
 
 
@@ -262,7 +255,7 @@ async function predict(file) {
 
         // 3. Process the results from the Gemini API
         console.log("Gemini Prediction Result:", data);
-        
+               
         const resultText = data.prediction || "Prediction service returned no text.";
         const category = data.category || "Unclassified"; // Assuming your backend structures the JSON response
 
@@ -270,7 +263,7 @@ async function predict(file) {
         alert(`NeuroSort Result:\n\nCategory: ${category}\n\nInstructions:\n${resultText}`);
         
         // You would typically navigate to a results page here, 
-        // e.g., window.location.href = `results.html?data=${encodeURIComponent(JSON.stringify(data))}`;
+        window.location.href = `results.html?data=${encodeURIComponent(JSON.stringify(data))}`;
 
     } catch (error) {
         console.error("Prediction failed:", error);

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/heic2any/dist/heic2any.min.js"></script>
+    <title>NeuroSort - Detection Result</title>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+        <div class="logo">NeuroSort</div>
+        <img src="../Images/logo.png" alt="NeuroSort Logo">
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="../Images/logo.png" alt="NeuroSort Logo">
+            <div class="top-name">NeuroSort</div>
+        </div>
+        <nav class="nav-menu">
+            <a href="application.html" class="nav-item">
+                <i>🏠</i>
+                <span>Home</span>
+            </a>
+            <a href="https://wa.me/60123456789" class="nav-item">
+                <i>❓</i>
+                <span>Contact Us</span>
+            </a>
+            <a href="setting.html" class="nav-item">
+                <i>⚙️</i>
+                <span>Settings</span>
+            </a>
+        </nav>
+    </div>
+
+    <div class="main-content-result">
+        <div id="error" class="error" style="display: none;">
+            <h2>Error</h2>
+            <p>No detection data found. Please go back and scan an image.</p>
+            <button class="error-button" onclick="goBack()">Go Back</button>
+        </div>
+
+        <div id="result" class="result-container" style="display: none;">
+            <h1 class="title">Detection Result</h1>
+
+            <div class="detection-info">
+                <div class="image-container">
+                    <img id="resultImage" class="result-image" alt="Detection Result">
+                </div>
+                <div id="detectionLabel" class="detection-label"></div>
+                <div class="bin-color"></div>
+                <div class="recyclable-status">Recyclable</div>
+            </div>
+
+            <button class="next-button" onclick="goToNextPage()">
+                Next Step
+            </button>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+    <!-- Footer Tab Bar -->
+    <div class="footer-tab-bar">
+        <span>Be Smart, Be Green, Be NeuroSort</span>
+    </div>
+</body>
+<script>
+    // Detection colors
+    const detectionColors = {
+        'paper': '#4687f1',
+        'plastic': '#fa8122',
+        'metal': '#846958',
+        'glass': '#846958'
+    };
+
+    const binType = {
+        'paper': 'Blue Bin',
+        'plastic': 'Orange Bin',
+        'metal': 'Brown Bin',
+        'glass': 'Brown Bin'
+    };
+
+    // Get color for detection type
+    function getDetectionColor(name) {
+        return detectionColors[name.toLowerCase()] || '#9b59b6';
+    }
+
+    // Get highest confidence prediction
+    function getHighestConfidencePrediction(predictions) {
+        if (!predictions || predictions.length === 0) return null;
+        return predictions.sort((a, b) => b.confidence - a.confidence)[0];
+    }
+
+    // Main function to load and display results
+    function loadResults() {
+        try {
+            const imageData = sessionStorage.getItem("uploadedImage");
+            const predictionData = localStorage.getItem("prediction");
+
+            if (!imageData || !predictionData) {
+                showError();
+                return;
+            }
+
+            const predictions = JSON.parse(predictionData);
+            const bestPrediction = getHighestConfidencePrediction(predictions);
+
+            if (!bestPrediction) {
+                showError();
+                return;
+            }
+
+            setupResult(imageData, bestPrediction);
+
+        } catch (error) {
+            console.error("Error loading results:", error);
+            showError();
+        }
+    }
+
+    // Setup the result display
+    function setupResult(imageData, prediction) {
+        const resultImage = document.getElementById('resultImage');
+        const detectionLabel = document.getElementById('detectionLabel');
+        const binColor = document.querySelector('.bin-color');
+
+        // Set up image
+        resultImage.onload = function () {
+            document.getElementById('result').style.display = 'block';
+        };
+
+        resultImage.onerror = function () {
+            console.error("Failed to load image");
+            showError();
+        };
+
+        resultImage.src = imageData;
+
+        // Set up labels
+        detectionLabel.textContent = prediction.name;
+        binColor.textContent = binType[prediction.name.toLowerCase()] || 'Unknown Bin';
+        binColor.style.backgroundColor = getDetectionColor(prediction.name);
+
+    }
+
+    // Show error state
+    function showError() {
+        document.getElementById('error').style.display = 'flex';
+        document.getElementById('result').style.display = 'none';
+    }
+
+    // Navigation functions
+    function goBack() {
+        window.history.back();
+    }
+
+    function goToNextPage() {
+        const predictionData = localStorage.getItem("prediction");
+        const predictions = JSON.parse(predictionData);
+        const bestPrediction = getHighestConfidencePrediction(predictions);
+
+        bestPrediction.name = bestPrediction.name.toLowerCase();
+
+        if (bestPrediction.name === "glass" || bestPrediction.name === "metal") {
+            window.location.href = `trash-guide.html?type=metalOrGlass`;
+        } else {
+            window.location.href = `trash-guide.html?type=${bestPrediction.name}`;
+        }
+    }
+
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', loadResults);
+</script>
+
+</html>
