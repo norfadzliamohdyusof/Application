@@ -220,14 +220,19 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
 
  
 async function predict(file) {
+
+     // Show loading state
+        showLoadingState();
+
+
     if (!file) {
         alert("Please select an image file first.");
         return;
     }
 
-    const predictBtn = document.getElementById('predictBtn');
+/*     const predictBtn = document.getElementById('predictBtn');
     predictBtn.disabled = true;
-    predictBtn.textContent = 'Scanning... Please wait.';
+    predictBtn.textContent = 'Scanning... Please wait.'; */
 
     try {
         // 1. Convert the file to a format suitable for Gemini (e.g., Base64 or Blob)
@@ -255,6 +260,19 @@ async function predict(file) {
 
         // 3. Process the results from the Gemini API
         console.log("Gemini Prediction Result:", data);
+
+            // Check if objects were detected
+                const hasDetections = checkForDetections(data);
+
+                if (hasDetections) {
+                    //  Objects detected - save data and redirect
+                    saveDataAndRedirect(data, file);
+                } else {
+                    // No objects detected - show no detection UI
+                    showNoDetectionState();
+                }
+
+
                
         const resultText = data.prediction || "Prediction service returned no text.";
         const category = data.category || "Unclassified"; // Assuming your backend structures the JSON response
