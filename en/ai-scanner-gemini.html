@@ -225,57 +225,7 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
         return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
     }
 
-    // API Configuration
-    //const API_ENDPOINT = "https://8541e9602e6d.ngrok-free.app/predict";
-
-/*     const API_ENDPOINT = "https://2d8bb94c26dc.ngrok-free.app/predict";
-
-    // Main prediction function
-    function predict(file) {
-
-        // Show loading state
-        showLoadingState();
-
-        // Prepare and send request to server
-        const formData = new FormData();
-        formData.append("file", file);
-
-        // Send POST request to the server
-        fetch(API_ENDPOINT, {
-            method: "POST",
-            body: formData,
-            headers: {
-                'ngrok-skip-browser-warning': 'true'
-            }
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Server error: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log("Server response:", data);
-
-                // Check if objects were detected
-                const hasDetections = checkForDetections(data);
-
-                if (hasDetections) {
-                    //  Objects detected - save data and redirect
-                    saveDataAndRedirect(data, file);
-                } else {
-                    // No objects detected - show no detection UI
-                    showNoDetectionState();
-                }
-            })
-            .catch(error => {
-                console.error("Request failed:", error);
-                showErrorState();
-            });
-    }
- */
-
-
+ 
 async function predict(file) {
     if (!file) {
         alert("Please select an image file first.");
@@ -299,7 +249,7 @@ async function predict(file) {
 
         // 2. Make the request to your secure backend API
         // *** IMPORTANT: Replace '/api/gemini-predict' with your actual backend endpoint ***
-        const response = await fetch('/api/gemini-predict', {
+        const response = await fetch('http://127.0.0.1:5000/api/gemini-predict', {
             method: 'POST',
             body: formData
         });
