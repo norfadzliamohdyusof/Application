@@ -228,7 +228,7 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
     // API Configuration
     //const API_ENDPOINT = "https://8541e9602e6d.ngrok-free.app/predict";
 
-    const API_ENDPOINT = "https://2d8bb94c26dc.ngrok-free.app/predict";
+/*     const API_ENDPOINT = "https://2d8bb94c26dc.ngrok-free.app/predict";
 
     // Main prediction function
     function predict(file) {
@@ -273,6 +273,66 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
                 showErrorState();
             });
     }
+ */
+
+
+async function predict(file) {
+    if (!file) {
+        alert("Please select an image file first.");
+        return;
+    }
+
+    const predictBtn = document.getElementById('predictBtn');
+    predictBtn.disabled = true;
+    predictBtn.textContent = 'Scanning... Please wait.';
+
+    try {
+        // 1. Convert the file to a format suitable for Gemini (e.g., Base64 or Blob)
+        // For simple AJAX/Fetch, we'll use a FormData object.
+        const formData = new FormData();
+        formData.append('image', file);
+        
+        // Add a text prompt for the Gemini model
+        const geminiPrompt = "Analyze this image. Identify the item and classify it into one of these categories: 'Recycle (Plastic/Paper/Metal)', 'Compost (Organic)', or 'Non-Recyclable (Trash)'. Also, provide a brief, friendly instruction on its proper disposal.";
+        formData.append('prompt', geminiPrompt);
+
+
+        // 2. Make the request to your secure backend API
+        // *** IMPORTANT: Replace '/api/gemini-predict' with your actual backend endpoint ***
+        const response = await fetch('/api/gemini-predict', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // 3. Process the results from the Gemini API
+        console.log("Gemini Prediction Result:", data);
+        
+        const resultText = data.prediction || "Prediction service returned no text.";
+        const category = data.category || "Unclassified"; // Assuming your backend structures the JSON response
+
+        // Display the results to the user
+        alert(`NeuroSort Result:\n\nCategory: ${category}\n\nInstructions:\n${resultText}`);
+        
+        // You would typically navigate to a results page here, 
+        // e.g., window.location.href = `results.html?data=${encodeURIComponent(JSON.stringify(data))}`;
+
+    } catch (error) {
+        console.error("Prediction failed:", error);
+        alert(`Failed to scan image. Please check the console for details. (Error: ${error.message})`);
+    } finally {
+        predictBtn.disabled = false;
+        predictBtn.textContent = 'Scan This Image';
+    }
+}
+
+
+
 
     // Check if server response contains object detections
     function checkForDetections(data) {
