@@ -134,6 +134,7 @@
         const detectionLabel = document.getElementById('detectionLabel');
         const binColor = document.querySelector('.bin-color');
         const predictionResult = predictionObject.prediction;
+        const categoryResult = predictionObject.category;
 
         // Set up image
         resultImage.onload = function () {
@@ -151,8 +152,12 @@
 
 
         // 1. Define the start and end markers for the desired phrase.
-        const startMarker = '**Category:** ';
+        const startMarker = '**Classification:** ';
         const endMarker = '**Proper Disposal Instruction:**';
+
+        if (categoryResult !== 'Recycle') {
+            startMarker = '**Category:** ';
+        }
 
         // 2. Find the starting index of the classification value.
         // We search for the start marker and add its length to get the index *after* the colon and space.
