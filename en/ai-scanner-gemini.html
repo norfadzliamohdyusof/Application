@@ -346,8 +346,8 @@ async function predict(file) {
         alert(predictionString)
 
         // Regular Expression 2: Capture the Classification
-        // Looks for the exact phrase '**Category:**' followed by any characters until the next newline.
-        const classifictionRegex = /\*\*Category:\*\*(.*?)\n/;
+        // Looks for the exact phrase '**Classification:**' followed by any characters until the next newline.
+        const classifictionRegex = /\*\*Classification:\*\*(.*?)\n/;
         const classificationMatch = predictionString.match(classificationRegex);
         const classificationValue = classificationMatch ? classificationMatch[1].trim():'Not found';
 
