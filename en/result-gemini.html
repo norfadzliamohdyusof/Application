@@ -155,16 +155,21 @@
         // 2. Find the starting index of the classification value.
         // We search for the start marker and add its length to get the index *after* the colon and space.
         const startIndex = classificationString.indexOf(startMarker) + startMarker.length;
+        alert(startIndex);
+
 
         // 3. Find the ending index of the classification value (the beginning of the next section).
         const endIndex = classificationString.indexOf(endMarker);
+        alert(endIndex);
+
 
         // 4. Use substring() to extract the text between the start and end indices.
         let trashType = 'Not found';
 
+        
         // Check to ensure both markers were found before extracting
         if (startIndex !== -1 && endIndex !== -1) {
-            trashType = sentence.substring(startIndex, endIndex).trim();
+            trashType = classificationString.substring(startIndex, endIndex).trim();
         }
 
          // Set up labels
