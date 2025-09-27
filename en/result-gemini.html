@@ -149,14 +149,28 @@
 
         const classificationString = predictionString.prediction;
 
-       
 
-        const startIndex = classificationString.indexOf('**Classification:**') + 20;
-        const endIndex = classificationString.indexOf('**Proper Disposal Instruction:**');
-        const trashtype = classificationString.slice(startIndex, endIndex);
+        // 1. Define the start and end markers for the desired phrase.
+        const startMarker = '**Classification:** ';
+        const endMarker = '\n\n**Proper Disposal Instruction:**';
+
+        // 2. Find the starting index of the classification value.
+        // We search for the start marker and add its length to get the index *after* the colon and space.
+        const startIndex = classificationString.indexOf(startMarker) + startMarker.length;
+
+        // 3. Find the ending index of the classification value (the beginning of the next section).
+        const endIndex = classificationString.indexOf(endMarker);
+
+        // 4. Use substring() to extract the text between the start and end indices.
+        let classification = 'Not found';
+
+        // Check to ensure both markers were found before extracting
+        if (startIndex !== -1 && endIndex !== -1) {
+            classification = sentence.substring(startIndex, endIndex).trim();
+        }
 
          // Set up labels
-        detectionLabel.textContent = trashtype;
+        detectionLabel.textContent = classification;
         binColor.textContent = binType[trashtype.toLowerCase()] || 'Unknown Bin';
         binColor.style.backgroundColor = getDetectionColor(trashtype);
 
