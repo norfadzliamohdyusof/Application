@@ -154,13 +154,9 @@
 
 
         // 1. Define the start and end markers for the desired phrase.
-        const startMarker = '**Classification:** ';
+        const startMarker = '**Class Label:** ';
         const endMarker = '**Disposal Instruction:**';
 
-        if (categoryResult !== 'Recycle') {
-            startMarker = '**Category:** ';
-            endMarker = '**Disposal Instruction:**';
-        }
 
         // 2. Find the starting index of the classification value.
         // We search for the start marker and add its length to get the index *after* the colon and space.
@@ -180,7 +176,7 @@
         // Check to ensure both markers were found before extracting
         if (startIndex !== -1 && endIndex !== -1) {
             trashType = predictionResult.substring(startIndex, endIndex).trim();
-        }
+        } 
 
          alert(`${trashType}`);
 
