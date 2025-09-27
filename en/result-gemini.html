@@ -104,15 +104,15 @@
     function loadResults() {
         try {
             const imageData = sessionStorage.getItem("uploadedImage");
-            const predictionData = localStorage.getItem("prediction");
+            const serverResponseData = localStorage.getItem("serverResponseString");
            
 
-            if (!imageData || !predictionData) {
+            if (!imageData || !serverResponseData) {
                 showError();
                 return;
             }
 
-            const prediction = JSON.parse(predictionData);
+            const predictionObject = JSON.parse(serverResponseData);
    /*          const bestPrediction = getHighestConfidencePrediction(predictions);
 
             if (!bestPrediction) {
@@ -120,7 +120,7 @@
                 return;
             } */
 
-            setupResult(imageData, prediction);
+            setupResult(imageData, predictionObject);
 
         } catch (error) {
             console.error("Error loading results:", error);
@@ -129,11 +129,11 @@
     }
 
     // Setup the result display
-    function setupResult(imageData, predictionString) {
+    function setupResult(imageData, predictionObject) {
         const resultImage = document.getElementById('resultImage');
         const detectionLabel = document.getElementById('detectionLabel');
         const binColor = document.querySelector('.bin-color');
-        const classificationString = predictionString.prediction;
+        const predictionResult = predictionObject.prediction;
 
         // Set up image
         resultImage.onload = function () {
@@ -154,12 +154,12 @@
 
         // 2. Find the starting index of the classification value.
         // We search for the start marker and add its length to get the index *after* the colon and space.
-        const startIndex = classificationString.indexOf(startMarker) + startMarker.length;
+        const startIndex = predictionResult.indexOf(startMarker) + startMarker.length;
         alert(startIndex);
 
 
         // 3. Find the ending index of the classification value (the beginning of the next section).
-        const endIndex = classificationString.indexOf(endMarker);
+        const endIndex = predictionResult.indexOf(endMarker);
         alert(endIndex);
 
 
@@ -169,7 +169,7 @@
         
         // Check to ensure both markers were found before extracting
         if (startIndex !== -1 && endIndex !== -1) {
-            trashType = classificationString.substring(startIndex, endIndex).trim();
+            trashType = predictionResult.substring(startIndex, endIndex).trim();
         }
 
          // Set up labels

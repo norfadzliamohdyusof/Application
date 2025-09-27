@@ -289,16 +289,6 @@ async function predict() {
                 }
 
 
-               
-        /* const resultText = data.prediction || "Prediction service returned no text.";
-        const category = data.category || "Unclassified"; // Assuming your backend structures the JSON response
-
-        // Display the results to the user
-        alert(`NeuroSort Result:\n\nCategory: ${category}\n\nInstructions:\n${resultText}`);
-        
-        // You would typically navigate to a results page here, 
-        window.location.href = `results.html?data=${encodeURIComponent(JSON.stringify(data))}`;
- */
     } catch (error) {
         console.error("Prediction failed:", error);
         alert(`Failed to scan image. Please check the console for details. (Error: ${error.message})`);
@@ -328,10 +318,10 @@ async function predict() {
   // Save response data and image, then redirect to results
     function saveDataAndRedirect(serverResponse, imageFile) {
         // Extract predictions from your API format
-        const predictions = serverResponse;
+        const predictions = serverResponse;      
 
         // Save predictions to localStorage
-        localStorage.setItem("prediction", JSON.stringify(predictions));
+        localStorage.setItem("serverResponseString", JSON.stringify(predictions));
 
         // Convert image to base64 and save to sessionStorage
         resizeImage(imageFile, 640, 640, 0.7).then((compressedBase64) => {
