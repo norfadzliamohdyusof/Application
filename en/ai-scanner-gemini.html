@@ -383,6 +383,9 @@ async function predict() {
         console.log(`Disposal Instruction: ${instructionValue}`);
  */
 
+        alert(JSON.stringify(prediction))
+
+
         // Save predictions to localStorage
         localStorage.setItem("prediction", JSON.stringify(prediction));
         localStorage.setItem("category", JSON.stringify(category));
