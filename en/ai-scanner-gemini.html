@@ -60,7 +60,7 @@
             </div>
 
             <div>
-                <button id="predictBtn" onclick="predict(fileInput.files[0])">Scan This Image</button>
+                <button id="predictBtn" onclick="predict()">Scan This Image</button>
             </div>
         </div>
     </div>
@@ -219,10 +219,16 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
     }
 
  
-async function predict(file) {
+async function predict() {
 
      // Show loading state
         showLoadingState();
+
+        // 1. Get a reference to the file input element
+    const fileInput = document.getElementById('fileInput');
+
+    // 2. Access the selected file (if any)
+    const file = fileInput.files[0]; 
 
 
         console.log("Gemini Prediction Result:", file);
