@@ -326,8 +326,42 @@ async function predict(file) {
 
 
         // Extract predictions from your API format
-        const prediction = data.prediction || "Prediction service returned no text.";
+        const predictionString = data.prediction || "Prediction service returned no text.";
         const category = data.category || "Unclassified"; // Assuming your backend structures the JSON response
+
+        // Regular Expression 1: Capture the Item
+        // Looks for the exact phrase '**Item:**' followed by any characters until the next newline.
+        const itemRegex = /\*\*Item:\*\*(.*?)\n/; 
+        const itemMatch = predictionString.match(itemRegex);
+        const         itemValue = itemMatch ? itemMatch[1].trim() : 'Not found';
+
+        // Regular Expression 2: Capture the Classification
+        // Looks for the exact phrase '**Category:**' followed by any characters until the next newline.
+        const classifictionRegex = /\*\*Category:\*\*(.*?)\n/;
+        const classificationMatch = predictionString.match(classificationRegex);
+        const classificationValue = classificationMatch ? classificationMatch[1].trim():'Not found';
+
+        // Regular Expression 3: Capture the Disposal Instruction
+        // This is more complex: it looks for the start of the instruction and captures
+        // everything until the end of the string (since it's the last element).
+        const instructionRegex = /\*\*Disposal Instruction:\*\*(.*)/s; 
+        const instructionMatch = predictionString.match(instructionRegex);
+
+        // We need an extra step to remove the quotes around the instruction text.
+        let instructionValue = 'Not found';
+        if (instructionMatch) {
+            // Capture group [1] is the text after the label.
+            instructionValue = intructionMatch[1].trim(); 
+            
+            // Remove the surrounding quotes (") from the instruction text
+            instructionValue = instructionValue.replace(/^"|"$/g, '');
+        }
+
+
+        console.log("--- Extracted Values ---");
+        console.log(`Item: ${itemValue}`);
+        console.log(`Classification: ${classificationValue}`);
+        console.log(`Disposal Instruction: ${instructionValue}`);
 
 
         // Save predictions to localStorage
