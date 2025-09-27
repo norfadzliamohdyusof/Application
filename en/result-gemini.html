@@ -170,12 +170,13 @@
 
 
         // 4. Use substring() to extract the text between the start and end indices.
-        //const trashType = 'Not found';
+        let trashType = 'Not found';
 
         
         // Check to ensure both markers were found before extracting
         if (startIndex !== -1 && endIndex !== -1) {
             trashType = predictionResult.substring(startIndex, endIndex).trim();
+            alert(`${trashType}`);
         } 
 
          alert(`${trashType}`);
