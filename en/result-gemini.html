@@ -133,6 +133,7 @@
         const resultImage = document.getElementById('resultImage');
         const detectionLabel = document.getElementById('detectionLabel');
         const binColor = document.querySelector('.bin-color');
+        const classificationString = predictionString.prediction;
 
         // Set up image
         resultImage.onload = function () {
@@ -144,10 +145,7 @@
             showError();
         };
 
-        resultImage.src = imageData;
-
-
-        const classificationString = predictionString.prediction;
+        resultImage.src = imageData;    
 
 
         // 1. Define the start and end markers for the desired phrase.
@@ -162,15 +160,15 @@
         const endIndex = classificationString.indexOf(endMarker);
 
         // 4. Use substring() to extract the text between the start and end indices.
-        let classification = 'Not found';
+        let trashType = 'Not found';
 
         // Check to ensure both markers were found before extracting
         if (startIndex !== -1 && endIndex !== -1) {
-            classification = sentence.substring(startIndex, endIndex).trim();
+            trashType = sentence.substring(startIndex, endIndex).trim();
         }
 
          // Set up labels
-        detectionLabel.textContent = classification;
+        detectionLabel.textContent = trashType;
         binColor.textContent = binType[trashtype.toLowerCase()] || 'Unknown Bin';
         binColor.style.backgroundColor = getDetectionColor(trashtype);
 
