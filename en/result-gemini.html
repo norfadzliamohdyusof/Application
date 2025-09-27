@@ -156,7 +156,7 @@
         const trashtype = classificationString.slice(startIndex, endIndex);
 
          // Set up labels
-        detectionLabel.textContent = classificationString.slice;
+        detectionLabel.textContent = trashtype;
         binColor.textContent = binType[trashtype.toLowerCase()] || 'Unknown Bin';
         binColor.style.backgroundColor = getDetectionColor(trashtype);
 
