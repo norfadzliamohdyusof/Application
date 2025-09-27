@@ -322,84 +322,7 @@ async function predict() {
         return false;
     }
 
-    // Save response data and image, then redirect to results
-    function saveDataAndRedirect(data, imageFile) {
-
-/*         const resultText = data.prediction || "Prediction service returned no text.";
-        const category = data.category || "Unclassified"; // Assuming your backend structures the JSON response
-
-        // Display the results to the user
-        alert(`NeuroSort Result:\n\nCategory: ${category}\n\nInstructions:\n${resultText}`);
-        
-        // You would typically navigate to a results page here, 
-        window.location.href = `results.html?data=${encodeURIComponent(JSON.stringify(data))}`;
- */
-
-
-
-        // Extract predictions from your API format
- /*        const predictionString = data.prediction || "Prediction service returned no text.";
-        const category = data.category || "Unclassified"; // Assuming your backend structures the JSON response
-
-      /*   alert(predictionString)
-         
-        // Regular Expression 1: Capture the Item
-        // Looks for the exact phrase '**Identified Item:**' followed by any characters until the next newline.
-        const itemRegex = /\*\*Identified Item:\*\*(.*?)\n/; 
-        const itemMatch = predictionString.match(itemRegex);
-        const itemValue = itemMatch ? itemMatch[1].trim() : 'Not found'; 
-
-        alert(`Item: ${itemValue}`);
-
-       
-        // Regular Expression 2: Capture the Category
-        // Looks for the exact phrase '**Category:**' followed by any characters until the next newline.
-        const categoryRegex = /\*\*Category:\*\*(.*?)\n/;
-        const categoryMatch = predictionString.match(categoryRegex);
-        const categoryValue = categoryMatch ? categoryMatch[1].trim():'Not found';
-
-        alert(`Category: ${categoryValue}`);
-
-        // Regular Expression 3: Capture the Disposal Instruction
-        // This is more complex: it looks for the start of the instruction and captures
-        // everything until the end of the string (since it's the last element).
-        const instructionRegex = /\*\*Disposal Instruction:\*\*(.*)/s; 
-        const instructionMatch = predictionString.match(instructionRegex);
-
-        // We need an extra step to remove the quotes around the instruction text.
-        let instructionValue = 'Not found';
-        if (instructionMatch) {
-            // Capture group [1] is the text after the label.
-            instructionValue = instructionMatch[1].trim(); 
-            
-            // Remove the surrounding quotes (") from the instruction text
-            instructionValue = instructionValue.replace(/^"|"$/g, '');
-        }
-
-
-        console.log("--- Extracted Values ---");
-        console.log(`Item: ${itemValue}`);
-        console.log(`Category: ${categoryValue}`);
-        console.log(`Disposal Instruction: ${instructionValue}`);
-
-
-         console.log(JSON.stringify(prediction));
-
-
-        // Save predictions to localStorage
-        localStorage.setItem("prediction", JSON.stringify(predictionString));
-        localStorage.setItem("category", JSON.stringify(category));
-
-        // Convert image to base64 and save to sessionStorage
-        resizeImage(imageFile, 640, 640, 0.7).then((compressedBase64) => {
-            sessionStorage.setItem("uploadedImage", compressedBase64);
-            window.location.href = "result-gemini.html";
-        }).catch(() => {
-            console.error("Failed to process image");
-            showErrorState();
-        });
-    }
- */
+  
 
 
   // Save response data and image, then redirect to results
@@ -413,7 +336,7 @@ async function predict() {
         // Convert image to base64 and save to sessionStorage
         resizeImage(imageFile, 640, 640, 0.7).then((compressedBase64) => {
             sessionStorage.setItem("uploadedImage", compressedBase64);
-            window.location.href = "result-gemini.html";
+            window.location.href = "result.html";
         }).catch(() => {
             console.error("Failed to process image");
             showErrorState();
