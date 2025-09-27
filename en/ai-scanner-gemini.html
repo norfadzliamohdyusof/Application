@@ -341,7 +341,7 @@ async function predict() {
         const predictionString = data.prediction || "Prediction service returned no text.";
         const category = data.category || "Unclassified"; // Assuming your backend structures the JSON response
 
-        alert(predictionString)
+      /*   alert(predictionString)
          
         // Regular Expression 1: Capture the Item
         // Looks for the exact phrase '**Identified Item:**' followed by any characters until the next newline.
@@ -381,7 +381,7 @@ async function predict() {
         console.log(`Item: ${itemValue}`);
         console.log(`Category: ${categoryValue}`);
         console.log(`Disposal Instruction: ${instructionValue}`);
-
+ */
 
         // Save predictions to localStorage
         localStorage.setItem("prediction", JSON.stringify(prediction));
