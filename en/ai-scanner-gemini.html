@@ -297,8 +297,10 @@ async function predict(file) {
 
     // Check if server response contains object detections
     function checkForDetections(data) {
+
+        console.log("Gemini Prediction Result:", data);
         // Handle specific API response format
-        if (data && data.success === true && data.category && data.prediction && Array.isArray(data.prediction)) {
+        if (data && data.success === true && data.category && data.prediction) {
             return data.prediction.length > 0;
         }
 
