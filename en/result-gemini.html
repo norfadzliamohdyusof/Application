@@ -179,12 +179,10 @@
             alert(`${trashType}`);
         } 
 
-         alert(`${trashType}`);
-
          // Set up labels
         detectionLabel.textContent = trashType;
-        binColor.textContent = binType[trashtype.toLowerCase()] || 'Unknown Bin';
-        binColor.style.backgroundColor = getDetectionColor(trashtype);
+        binColor.textContent = binType[trashType.toLowerCase()] || 'Unknown Bin';
+        binColor.style.backgroundColor = getDetectionColor(trashType);
 
 
         /* binColor.textContent = binType[prediction.name.toLowerCase()] || 'Unknown Bin';
