@@ -336,7 +336,7 @@ async function predict() {
         // Convert image to base64 and save to sessionStorage
         resizeImage(imageFile, 640, 640, 0.7).then((compressedBase64) => {
             sessionStorage.setItem("uploadedImage", compressedBase64);
-            window.location.href = "result.html";
+            window.location.href = "result-gemini.html";
         }).catch(() => {
             console.error("Failed to process image");
             showErrorState();
