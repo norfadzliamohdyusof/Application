@@ -153,10 +153,11 @@
 
         // 1. Define the start and end markers for the desired phrase.
         const startMarker = '**Classification:** ';
-        const endMarker = '**Proper Disposal Instruction:**';
+        const endMarker = '**Disposal Instruction:**';
 
         if (categoryResult !== 'Recycle') {
             startMarker = '**Category:** ';
+            endMarker = '**Proper Disposal Instruction:**';
         }
 
         // 2. Find the starting index of the classification value.
