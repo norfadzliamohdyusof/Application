@@ -274,7 +274,7 @@ async function predict(file) {
 
 
                
-        const resultText = data.prediction || "Prediction service returned no text.";
+        /* const resultText = data.prediction || "Prediction service returned no text.";
         const category = data.category || "Unclassified"; // Assuming your backend structures the JSON response
 
         // Display the results to the user
@@ -282,7 +282,7 @@ async function predict(file) {
         
         // You would typically navigate to a results page here, 
         window.location.href = `results.html?data=${encodeURIComponent(JSON.stringify(data))}`;
-
+ */
     } catch (error) {
         console.error("Prediction failed:", error);
         alert(`Failed to scan image. Please check the console for details. (Error: ${error.message})`);
@@ -298,8 +298,8 @@ async function predict(file) {
     // Check if server response contains object detections
     function checkForDetections(data) {
         // Handle specific API response format
-        if (data && data.success === true && data.predictions && Array.isArray(data.predictions)) {
-            return data.predictions.length > 0;
+        if (data && data.success === true && data.category && data.prediction && Array.isArray(data.prediction)) {
+            return data.prediction.length > 0;
         }
 
         // Handle direct array format
@@ -312,11 +312,27 @@ async function predict(file) {
 
     // Save response data and image, then redirect to results
     function saveDataAndRedirect(serverResponse, imageFile) {
+
+/*         const resultText = data.prediction || "Prediction service returned no text.";
+        const category = data.category || "Unclassified"; // Assuming your backend structures the JSON response
+
+        // Display the results to the user
+        alert(`NeuroSort Result:\n\nCategory: ${category}\n\nInstructions:\n${resultText}`);
+        
+        // You would typically navigate to a results page here, 
+        window.location.href = `results.html?data=${encodeURIComponent(JSON.stringify(data))}`;
+ */
+
+
+
         // Extract predictions from your API format
-        const predictions = serverResponse.predictions || serverResponse;
+        const prediction = data.prediction || "Prediction service returned no text.";
+        const category = data.category || "Unclassified"; // Assuming your backend structures the JSON response
+
 
         // Save predictions to localStorage
-        localStorage.setItem("prediction", JSON.stringify(predictions));
+        localStorage.setItem("prediction", JSON.stringify(prediction));
+        localStorage.setItem("category", JSON.stringify(category));
 
         // Convert image to base64 and save to sessionStorage
         resizeImage(imageFile, 640, 640, 0.7).then((compressedBase64) => {

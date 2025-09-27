@@ -95,29 +95,30 @@
     }
 
     // Get highest confidence prediction
-    function getHighestConfidencePrediction(predictions) {
+/*     function getHighestConfidencePrediction(predictions) {
         if (!predictions || predictions.length === 0) return null;
         return predictions.sort((a, b) => b.confidence - a.confidence)[0];
-    }
+    } */
 
     // Main function to load and display results
     function loadResults() {
         try {
             const imageData = sessionStorage.getItem("uploadedImage");
             const predictionData = localStorage.getItem("prediction");
+            const categoryData = localStorage.getItem("category");
 
-            if (!imageData || !predictionData) {
+            if (!imageData || !predictionData || !categoryData) {
                 showError();
                 return;
             }
 
             const predictions = JSON.parse(predictionData);
-            const bestPrediction = getHighestConfidencePrediction(predictions);
+   /*          const bestPrediction = getHighestConfidencePrediction(predictions);
 
             if (!bestPrediction) {
                 showError();
                 return;
-            }
+            } */
 
             setupResult(imageData, bestPrediction);
 

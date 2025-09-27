@@ -217,8 +217,8 @@
     // Check if server response contains object detections
     function checkForDetections(data) {
         // Handle specific API response format
-        if (data && data.success === true && data.predictions && Array.isArray(data.predictions)) {
-            return data.predictions.length > 0;
+        if (data && data.success === true && data.category && Array.isArray(data.analysis_details)) {
+            return data.analysis_details.length > 0;
         }
 
         // Handle direct array format
