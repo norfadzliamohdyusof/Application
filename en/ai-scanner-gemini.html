@@ -335,11 +335,15 @@ async function predict(file) {
         const predictionString = data.prediction || "Prediction service returned no text.";
         const category = data.category || "Unclassified"; // Assuming your backend structures the JSON response
 
+
+         
         // Regular Expression 1: Capture the Item
         // Looks for the exact phrase '**Item:**' followed by any characters until the next newline.
-        const itemRegex = /\*\*Item:\*\*(.*?)\n/; 
+        /* const itemRegex = /\*\*Item:\*\*(.*?)\n/; 
         const itemMatch = predictionString.match(itemRegex);
-        const         itemValue = itemMatch ? itemMatch[1].trim() : 'Not found';
+        const         itemValue = itemMatch ? itemMatch[1].trim() : 'Not found'; */
+
+        alert(predictionString)
 
         // Regular Expression 2: Capture the Classification
         // Looks for the exact phrase '**Category:**' followed by any characters until the next newline.
