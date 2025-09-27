@@ -197,16 +197,44 @@
     }
 
     function goToNextPage() {
-        const predictionData = localStorage.getItem("prediction");
-        const predictions = JSON.parse(predictionData);
-        const bestPrediction = getHighestConfidencePrediction(predictions);
 
-        bestPrediction.name = bestPrediction.name.toLowerCase();
 
-        if (bestPrediction.name === "glass" || bestPrediction.name === "metal") {
+        const serverResponseData = localStorage.getItem("serverResponseString");  
+        const predictionObject = JSON.parse(serverResponseData);
+
+
+         // 1. Define the start and end markers for the desired phrase.
+        const startMarker = '**Class Label:** ';
+        const endMarker = '**Disposal Instruction:**';
+
+
+        // 2. Find the starting index of the classification value.
+        // We search for the start marker and add its length to get the index *after* the colon and space.
+        const startIndex = predictionResult.indexOf(startMarker) + startMarker.length;
+        alert(`${startIndex}`);
+
+
+        // 3. Find the ending index of the classification value (the beginning of the next section).
+        const endIndex = predictionResult.indexOf(endMarker);
+        alert(`${endIndex}`);
+
+
+        // 4. Use substring() to extract the text between the start and end indices.
+        let trashType = 'Not found';
+
+        
+        // Check to ensure both markers were found before extracting
+        if (startIndex !== -1 && endIndex !== -1) {
+            trashType = predictionResult.substring(startIndex, endIndex).trim();   
+            trashType = trashType.slice(trashType.indexOf('(') + 1, trashType.lastIndexOf(')'));        
+        } 
+
+        
+
+        if (trashType === "glass" || trashType === "metal") {
             window.location.href = `trash-guide.html?type=metalOrGlass`;
         } else {
-            window.location.href = `trash-guide.html?type=${bestPrediction.name}`;
+            window.location.href = `trash-guide.html?type=${trashType}`;
         }
     }
 
