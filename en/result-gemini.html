@@ -129,7 +129,7 @@
     }
 
     // Setup the result display
-    function setupResult(imageData, prediction) {
+    function setupResult(imageData, predictionString) {
         const resultImage = document.getElementById('resultImage');
         const detectionLabel = document.getElementById('detectionLabel');
         const binColor = document.querySelector('.bin-color');
@@ -147,15 +147,16 @@
         resultImage.src = imageData;
 
 
-        const categoryString = prediction.category;
+        const classificationString = predictionString.prediction;
 
-        // Set up labels
-        detectionLabel.textContent = categoryString;
+       
 
-        const startIndex = categoryString.indexOf(' ');
-        const endIndex = categoryString.indexOf(')');
-        const trashtype = categoryString.slice(startIndex, endIndex);
+        const startIndex = classificationString.indexOf('**Classification:**') + 20;
+        const endIndex = classificationString.indexOf('**Proper Disposal Instruction:**');
+        const trashtype = classificationString.slice(startIndex, endIndex);
 
+         // Set up labels
+        detectionLabel.textContent = classificationString.slice;
         binColor.textContent = binType[trashtype.toLowerCase()] || 'Unknown Bin';
         binColor.style.backgroundColor = getDetectionColor(trashtype);
 
