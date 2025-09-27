@@ -151,7 +151,7 @@
 
 
         // 1. Define the start and end markers for the desired phrase.
-        const startMarker = '**Classification:** ';
+        const startMarker = '**Category:** ';
         const endMarker = '**Proper Disposal Instruction:**';
 
         // 2. Find the starting index of the classification value.
@@ -166,13 +166,15 @@
 
 
         // 4. Use substring() to extract the text between the start and end indices.
-        let trashType = 'Not found';
+        const trashType = 'Not found';
 
         
         // Check to ensure both markers were found before extracting
         if (startIndex !== -1 && endIndex !== -1) {
             trashType = predictionResult.substring(startIndex, endIndex).trim();
         }
+
+         alert(`${trashType}`);
 
          // Set up labels
         detectionLabel.textContent = trashType;
