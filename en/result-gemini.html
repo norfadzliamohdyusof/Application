@@ -146,10 +146,24 @@
 
         resultImage.src = imageData;
 
+
+        const categoryString = prediction.category;
+
         // Set up labels
-        detectionLabel.textContent = prediction.category;
-        binColor.textContent = binType[prediction.name.toLowerCase()] || 'Unknown Bin';
-        binColor.style.backgroundColor = getDetectionColor(prediction.name);
+        detectionLabel.textContent = categoryString;
+
+        const startIndex = categoryString.indexOf(' ');
+        const endIndex = categoryString.indexOf(')');
+        const trashtype = categoryString.slice(startIndex, endIndex);
+
+        binColor.textContent = binType[trashtype.toLowerCase()] || 'Unknown Bin';
+        binColor.style.backgroundColor = getDetectionColor(trashtype);
+
+
+        /* binColor.textContent = binType[prediction.name.toLowerCase()] || 'Unknown Bin';
+        binColor.style.backgroundColor = getDetectionColor(prediction.name); */
+
+       
 
     }
 
