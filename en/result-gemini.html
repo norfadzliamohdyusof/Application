@@ -133,8 +133,7 @@
         const resultImage = document.getElementById('resultImage');
         const detectionLabel = document.getElementById('detectionLabel');
         const binColor = document.querySelector('.bin-color');
-        const predictionResult = predictionObject.prediction;
-        const categoryResult = predictionObject.category;
+        const predictionResult = predictionObject.prediction;       
 
         // Set up image
         resultImage.onload = function () {
@@ -146,12 +145,9 @@
             showError();
         };
 
-        resultImage.src = imageData;    
-
-        alert(`${categoryResult}`);
+        resultImage.src = imageData;           
 
         alert(`${predictionResult}`);
-
 
         // 1. Define the start and end markers for the desired phrase.
         const startMarker = '**Class Label:** ';
@@ -185,13 +181,7 @@
          // Set up labels
         detectionLabel.textContent = trashType;
         binColor.textContent = binType[trashType.toLowerCase()] || 'Unknown Bin';
-        binColor.style.backgroundColor = getDetectionColor(trashType);
-
-
-        /* binColor.textContent = binType[prediction.name.toLowerCase()] || 'Unknown Bin';
-        binColor.style.backgroundColor = getDetectionColor(prediction.name); */
-
-       
+        binColor.style.backgroundColor = getDetectionColor(trashType);       
 
     }
 
