@@ -311,12 +311,7 @@ async function predict(file) {
         console.log("Gemini Prediction Result:", data);
         // Handle specific API response format
         if (data && data.success === true && data.category && data.prediction) {
-            return data.prediction.length > 0;
-        }
-
-        // Handle direct array format
-        if (Array.isArray(data)) {
-            return data.length > 0;
+            return true;
         }
 
         return false;
