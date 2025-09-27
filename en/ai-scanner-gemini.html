@@ -342,14 +342,12 @@ async function predict(file) {
         const itemRegex = /\*\*Identified Item:\*\*(.*?)\n/; 
         const itemMatch = predictionString.match(itemRegex);
         const itemValue = itemMatch ? itemMatch[1].trim() : 'Not found'; 
-
        
-
         // Regular Expression 2: Capture the Category
         // Looks for the exact phrase '**Category:**' followed by any characters until the next newline.
         const categoryRegex = /\*\*Category:\*\*(.*?)\n/;
-        const categoryMatch = predictionString.match(classificationRegex);
-        const categoryValue = classificationMatch ? classificationMatch[1].trim():'Not found';
+        const categoryMatch = predictionString.match(categoryRegex);
+        const categoryValue = categoryMatch ? categoryMatch[1].trim():'Not found';
 
         // Regular Expression 3: Capture the Disposal Instruction
         // This is more complex: it looks for the start of the instruction and captures
