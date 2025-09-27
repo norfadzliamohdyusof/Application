@@ -128,7 +128,7 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
 });
 
 
-  const fileInput = document.getElementById('fileInput');
+    const fileInput = document.getElementById('fileInput');
     const fileInfo = document.getElementById('fileInfo');
     const fileName = document.getElementById('fileName');
     const fileSize = document.getElementById('fileSize');
@@ -225,6 +225,9 @@ async function predict(file) {
         showLoadingState();
 
 
+        console.log("Gemini Prediction Result:", file);
+
+
     if (!file) {
         alert("Please select an image file first.");
         return;
@@ -260,6 +263,13 @@ async function predict(file) {
 
         // 3. Process the results from the Gemini API
         console.log("Gemini Prediction Result:", data);
+
+        const resultText = data.prediction || "Prediction service returned no text.";
+        const category = data.category || "Unclassified"; // Assuming your backend structures the JSON response
+
+        // Display the results to the user
+        alert(`NeuroSort Result:\n\nCategory: ${category}\n\nInstructions:\n${resultText}`);
+        
 
             // Check if objects were detected
                 const hasDetections = checkForDetections(data);
