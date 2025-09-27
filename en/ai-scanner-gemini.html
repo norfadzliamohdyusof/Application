@@ -338,7 +338,7 @@ async function predict() {
 
 
         // Extract predictions from your API format
-        const predictionString = data.prediction || "Prediction service returned no text.";
+ /*        const predictionString = data.prediction || "Prediction service returned no text.";
         const category = data.category || "Unclassified"; // Assuming your backend structures the JSON response
 
       /*   alert(predictionString)
@@ -381,14 +381,34 @@ async function predict() {
         console.log(`Item: ${itemValue}`);
         console.log(`Category: ${categoryValue}`);
         console.log(`Disposal Instruction: ${instructionValue}`);
- */
+
 
          console.log(JSON.stringify(prediction));
 
 
         // Save predictions to localStorage
-        localStorage.setItem("prediction", JSON.stringify(prediction));
+        localStorage.setItem("prediction", JSON.stringify(predictionString));
         localStorage.setItem("category", JSON.stringify(category));
+
+        // Convert image to base64 and save to sessionStorage
+        resizeImage(imageFile, 640, 640, 0.7).then((compressedBase64) => {
+            sessionStorage.setItem("uploadedImage", compressedBase64);
+            window.location.href = "result-gemini.html";
+        }).catch(() => {
+            console.error("Failed to process image");
+            showErrorState();
+        });
+    }
+ */
+
+
+  // Save response data and image, then redirect to results
+    function saveDataAndRedirect(serverResponse, imageFile) {
+        // Extract predictions from your API format
+        const predictions = serverResponse;
+
+        // Save predictions to localStorage
+        localStorage.setItem("prediction", JSON.stringify(predictions));
 
         // Convert image to base64 and save to sessionStorage
         resizeImage(imageFile, 640, 640, 0.7).then((compressedBase64) => {
@@ -399,6 +419,9 @@ async function predict() {
             showErrorState();
         });
     }
+
+
+
 
     function resizeImage(file, maxWidth = 640, maxHeight = 640, quality = 0.7) {
         return new Promise((resolve) => {

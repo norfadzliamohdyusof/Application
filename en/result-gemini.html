@@ -112,7 +112,7 @@
                 return;
             }
 
-            const predictions = JSON.parse(predictionData);
+            const category = JSON.parse(categoryData);
    /*          const bestPrediction = getHighestConfidencePrediction(predictions);
 
             if (!bestPrediction) {
@@ -120,7 +120,7 @@
                 return;
             } */
 
-            setupResult(imageData, bestPrediction);
+            setupResult(imageData, category);
 
         } catch (error) {
             console.error("Error loading results:", error);
@@ -129,7 +129,7 @@
     }
 
     // Setup the result display
-    function setupResult(imageData, prediction) {
+    function setupResult(imageData, category) {
         const resultImage = document.getElementById('resultImage');
         const detectionLabel = document.getElementById('detectionLabel');
         const binColor = document.querySelector('.bin-color');
