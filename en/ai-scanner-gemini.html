@@ -306,9 +306,7 @@ async function predict(file) {
 
 
     // Check if server response contains object detections
-    function checkForDetections(data) {
-
-        alert(JSON.stringify(data));
+    function checkForDetections(data) {       
         
         // Handle specific API response format
         if (data && data.success === true && data.category && data.prediction) {
@@ -319,7 +317,7 @@ async function predict(file) {
     }
 
     // Save response data and image, then redirect to results
-    function saveDataAndRedirect(serverResponse, imageFile) {
+    function saveDataAndRedirect(data, imageFile) {
 
 /*         const resultText = data.prediction || "Prediction service returned no text.";
         const category = data.category || "Unclassified"; // Assuming your backend structures the JSON response
