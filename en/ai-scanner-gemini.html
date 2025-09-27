@@ -358,7 +358,7 @@ async function predict() {
         const categoryMatch = predictionString.match(categoryRegex);
         const categoryValue = categoryMatch ? categoryMatch[1].trim():'Not found';
 
-        console.log(`Category: ${categoryValue}`);
+        alert(`Category: ${categoryValue}`);
 
         // Regular Expression 3: Capture the Disposal Instruction
         // This is more complex: it looks for the start of the instruction and captures
@@ -370,7 +370,7 @@ async function predict() {
         let instructionValue = 'Not found';
         if (instructionMatch) {
             // Capture group [1] is the text after the label.
-            instructionValue = intructionMatch[1].trim(); 
+            instructionValue = instructionMatch[1].trim(); 
             
             // Remove the surrounding quotes (") from the instruction text
             instructionValue = instructionValue.replace(/^"|"$/g, '');
