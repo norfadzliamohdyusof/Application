@@ -228,7 +228,7 @@
         // Check to ensure both markers were found before extracting
         if (startIndex !== -1 && endIndex !== -1) {
             trashType = predictionResult.substring(startIndex, endIndex).trim();   
-            trashType = trashType.slice(trashType.indexOf('(') + 1, trashType.lastIndexOf(')').toLowerCase());        
+            trashType = trashType.slice(trashType.indexOf('(') + 1, trashType.lastIndexOf(')')).toLowerCase();        
         } 
 
           alert(`${trashType}`);
