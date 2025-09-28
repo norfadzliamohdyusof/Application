@@ -225,20 +225,21 @@
         let trashType = 'Not found';
 
         
-        // Check to ensure both markers were found before extracting
+         // Check to ensure both markers were found before extracting
         if (startIndex !== -1 && endIndex !== -1) {
-            trashType = predictionResult.substring(startIndex, endIndex).trim().toLowerCase();   
+            trashType = predictionResult.substring(startIndex, endIndex).trim();   
             trashType = trashType.slice(trashType.indexOf('(') + 1, trashType.lastIndexOf(')'));        
         } 
 
-          alert(`${trashType}`);
+        
+        alert(`${trashType.toLowerCase()}`);
 
         
 
-        if (trashType === "glass" || trashType === "metal") {
+        if (trashType.toLowerCase() === "glass" || trashType.toLowerCase() === "metal") {
             window.location.href = `trash-guide.html?type=metalOrGlass`;
         } else {
-            window.location.href = `trash-guide.html?type=${trashType}`;
+            window.location.href = `trash-guide.html?type=${trashType.toLowerCase()}`;
         }
     }
 
